@@ -1,0 +1,81 @@
+<script type="text/javascript" src="//code.jquery.com/jquery-git.js"></script>
+<script type="text/javascript" src="http://flash-ripper.com/toys/fradio/js/main.js"></script>
+<script type="text/javascript" src="http://flash-ripper.com/toys/fradio/js/visualization.js"></script>
+<script type="text/javascript" src="http://flash-ripper.com/toys/fradio/js/screensaver.js"></script>
+<link rel="stylesheet" type="text/css" href="http://flash-ripper.com/toys/fradio/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="http://flash-ripper.com/toys/fradio/css/fradio.css">
+<div class="radio">
+    <div class="container-fluid" data-role="wrapper">
+        <div class="station-name-bg"></div>
+        <div class="row top-row">
+            <div id="block-station" class="col-md-6 col-sm-6 col-xs-12">
+                <div class="station-label">Station:</div>
+                <h2 class="station-name pull-left"></h2>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <audio controls loop class="player pull-left" type="audio/mpeg"></audio>
+                <div id="theme-switch" class="btn-group btn-group-sm pull-right" role="group" aria-label="Theme" data-role="theme-switcher">
+                    <button type="button" class="btn btn-default active" data-theme="lite">1</button>
+                    <button type="button" class="btn btn-default" data-theme="dark">0</button>
+                </div>
+            </div>
+        </div>
+        <div class="row station-links center-block">
+            <div class="col-md-3 col-sm-6 col-xs-12 audio-group power">
+                <li>
+                    <h3>Power</h3></li>
+                <li><a href="http://uwstream2.somafm.com:8400/;stream.mp3" data-name="dubstep">Dubstep Beyond</a></li>
+                <li><a href="http://xstream1.somafm.com:9090/;stream.mp3" data-name="bagel">BAGeL Radio</a></li>
+                <li><a href="http://xstream1.somafm.com:8040/;stream.mp3" data-name="brfm">Black Rock FM</a></li>
+                <li><a href="http://uwstream2.somafm.com:5500/;stream.mp3">South By Soma</a></li>
+                <li>
+                    <h3>Hard and Hacky</h3></li>
+                <li><a href="http://xstream1.somafm.com:2504/;stream.mp3" data-name="thetrip">The Trip</a></li>
+                <li><a href="http://xstream1.somafm.com:8062/;stream.mp3" data-name="cliqhop">Cliq Hop IDM</a></li>
+                <li><a href="http://xstream1.somafm.com:8300/;stream.mp3" data-name="doomed">Doomed</a></li>
+                <li><a href="http://uwstream2.somafm.com:9290/;stream.mp3" data-name="metal">Metal Detector</a></li>
+                <li><a href="http://xstream1.somafm.com:6200/;stream.mp3" data-name="defcon" data-alias="def-con-radio">DEF CON Radio</a></li>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12 audio-group atmos">
+                <h3>Atmospheric</h3>
+                <li><a href="http://uwstream2.somafm.com/;stream.mp3" data-name="dronezone">Drone Zone</a></li>
+                <li><a href="http://xstream1.somafm.com:2020/;stream.mp3" data-name="missioncontrol">Mission Control</a></li>
+                <li><a href="http://xstream1.somafm.com:2800/;stream.mp3" data-name="deepspaceone">Deep Space One</a></li>
+                <li><a href="http://uwstream2.somafm.com:2040/;stream.mp3" data-name="sf1033">SF 10-33</a></li>
+                <h3>Experimental</h3>
+                <li><a href="http://xstream1.somafm.com:8500/;stream.mp3" data-name="illstreet">Illinois Street Lounge</a></li>
+                <li><a href="http://xstream1.somafm.com:8000/;stream.mp3" data-name="spacestation">Space Station Soma</a></li>
+                <li><a href="http://xstream1.somafm.com:8600/;stream.mp3" data-name="sonicuniverse">Sonic Universe</a></li>
+                <li><a href="http://xstream1.somafm.com:5100/;stream.mp3" data-name="earwaves">Earwaves</a></li>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12 audio-group easy">
+                <h3>Easy</h3>
+                <li><a href="http://xstream1.somafm.com:8850/;stream.mp3" data-name="suburbsofgoa">Suburbs Of Goa</a></li>
+                <li><a href="http://xstream1.somafm.com:8002/;stream.mp3" data-name="secretagent">Secret Agent</a></li>
+                <li><a href="http://xstream1.somafm.com:8388/;stream.mp3" data-name="beatblender">Beat Blender</a></li>
+                <li><a href="http://xstream1.somafm.com:8900/;stream.mp3" data-name="digitalis">Digitalis</a></li>
+                <h3>Easiest</h3>
+                <li><a href="http://xstream1.somafm.com:8090/;stream.mp3" data-name="indiepop">Indie Pop</a></li>
+                <li><a href="http://xstream1.somafm.com:2200/;stream.mp3" data-name="poptron">PopTron</a></li>
+                <li><a href="http://xstream1.somafm.com:8800/;stream.mp3" data-name="lush">Lush</a></li>
+                <li><a href="http://uwstream1.somafm.com/;stream.mp3" data-name="groovesalad">Groove Salad</a></li>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12 audio-group vintage">
+                <h3>Vintage</h3>
+                <li><a href="http://xstream1.somafm.com:8700/;stream.mp3" data-name="covers">Covers</a></li>
+                <li><a href="http://xstream1.somafm.com:8880/;stream.mp3" data-name="u80s">Underground 80s</a></li>
+                <li><a href="http://uwstream2.somafm.com:7770/;stream.mp3" data-name="7soul">Seven Inch Soul</a></li>
+                <h3>Folk</h3>
+                <li><a href="http://xstream1.somafm.com:7000/;stream.mp3" data-name="bootliquor">Boot Liquor</a></li>
+                <li><a href="http://xstream1.somafm.com:7400/;stream.mp3" data-name="folkfwd">Folk Forward</a></li>
+                <li><a href="http://radio.4duk.ru/4duk128.mp3" data-name="4duk" title="Радио Чипльдук">(4duk)</a></li>
+            </div>
+        </div>
+        <div class="desc">fradio (<a href="/edit">edit</a>) is mobile-friendly html5 player for <a href="http://somafm.com/">SomaFM</a> &amp; <a href="http://4duk.ru/">4duk.ru</a> made by <a href="http://flash-ripper.com">flash-ripper</a> <sup>+<a href="http://jsfiddle.net/varDenB/ywvjz65f/">src</a></sup>|<a href="node/3028/edit">adm</a></div>
+    </div>
+</div>
+<!-- TODO 
+  Add Station Button to add any external url.
+  Add Playlist Button to add url like vk search pages.
+-->
+<!--break-->
