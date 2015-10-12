@@ -36,6 +36,12 @@ body.html.page-node-3028.node-type-page { border: none; }
 	overflow: hidden;
 	position: absolute;
 	background: #eee;
+	display: none;
+}
+
+#fradiotip .progress {
+	margin: 5%;
+	height: 70px;
 }
 
 #fradiotip {

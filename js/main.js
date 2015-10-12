@@ -78,6 +78,7 @@ $(document).ready(function() {
 
 		radioframe.setAttribute('src', getInfoLink($infoLink));
 		tip.style.top = evt.clientY + 10 + 'px';
+		tip.style.display = 'block';
 		
 		// window.open(getInfoLink($infoLink), '_blank');
 	}
