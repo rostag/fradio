@@ -29,13 +29,13 @@ body.html.page-node-3028.node-type-page { border: none; }
 
 #fradiotooltip {
 	top: 470px;
-	left: 28px;
-	right: 28px;
+	left: 36px;
+	right: 36px;
 	height: 140px;
 	z-index: 1000;
 	overflow: hidden;
 	position: absolute;
-	border: solid 1px #ccc;
+	background: #eee;
 }
 
 #fradiotip {
@@ -49,7 +49,7 @@ body.html.page-node-3028.node-type-page { border: none; }
 	left: -190px;
 	width: 1600px;
 	height: 400px;
-	border-style: none;
+	border: none;
 	position: absolute;
 	overflow: hidden;
 }
