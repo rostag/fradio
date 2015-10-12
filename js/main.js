@@ -68,17 +68,28 @@ $(document).ready(function() {
         return url;        
     }
 
-    function onInfoLink($infoLink) {
-        window.open(getInfoLink($infoLink), '_blank');
+    function onInfoLink($infoLink, evt) {
+    	var radioframe;
+    	var tip;
+    	states.infoLink.toggle = !states.infoLink.toggle; // === 'on' ? 'off' : 'on';
+    	if ( states.infoLink.toggle ) {
+	        radioframe = document.getElementById('fradioframe');
+	        tip = document.getElementById('fradiotooltip');
+	        radioframe.setAttribute('src', getInfoLink($infoLink));
+	        tip.style.top = evt.clientY + 10 + 'px';
+	        tip.style.display = 'block';
+	        radioframe.style.display = 'block';
+    	} else {
+			tip.style.display = 'none';
+			radioframe.style.display = 'none';
+    	}
+
+        // window.open(getInfoLink($infoLink), '_blank');
     }
 
-    function onHoverInfoLink($infoLink, evt) {
-        var iframe = document.getElementById('fradioframe');
-        var tip = document.getElementById('fradiotooltip');
-        iframe.setAttribute('src', getInfoLink($infoLink));
-        tip.style.top = evt.clientY + 10 + 'px';
-        // console.dir(evt);
-    }
+    // function onHoverInfoLink($infoLink, evt) {
+    //     // console.dir(evt);
+    // }
 
 // 2. A little bit of JS magic to properly reposition the modal once it has been resized:
 // source: https://trueg.wordpress.com/2012/10/12/and-now-for-something-completely-different-resizable-bootstrap-modals/
@@ -135,10 +146,10 @@ $(document).ready(function() {
         onInfoLink($(evt.currentTarget));
     });
 
-    $infoLinks.bind('mouseover', function(evt) {
-        evt.preventDefault();
-        onHoverInfoLink($(evt.currentTarget), evt);
-    });
+    // $infoLinks.bind('mouseover', function(evt) {
+    //     evt.preventDefault();
+    //     onHoverInfoLink($(evt.currentTarget), evt);
+    // });
 
     $('[data-role="theme-switcher"]').bind('click', function() {
         toggleTheme('dark');
