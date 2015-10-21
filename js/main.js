@@ -6,14 +6,26 @@
 
 $(document).ready(() => {
 
-	function initLocation() {
+	var self = this;
+	var $stationLink = null;
+
+	function initPlayer() {
+		initDefaultStation();
+	}
+
+	function initDefaultStation() {
 		var hash = window.location.hash.toLowerCase().substring(1);
-		var $stationLink = $('.station-links a').filter(function() {
+		$stationLink = $('.station-links a').filter(function() {
 			return $(this).text().toLowerCase() === hash || $(this).attr('data-alias') === hash;
 		});
 		// console.log('hash: ', hash, 'stationLink: ', $stationLink);
 		if ($stationLink.length !== 0) {
 			activateStationLink($stationLink);
+		} else {
+			// FIXME	
+			// var $defaultLink = $('.station-links a')[1];
+			// console.log('default station link: ', $defaultLink);
+			// activateStationLink($defaultLink);
 		}
 	}
 
@@ -69,28 +81,13 @@ $(document).ready(() => {
 		return url;
 	}
 
-	// tip.style.display = 'none';
-	// radioframe.style.display = 'none';
-		// tip.style.display = 'block';
-		// radioframe.style.display = 'block';
-	function onInfoLink($infoLink, evt) {
-		var radioframe = document.getElementById('fradioframe');
-		var tip = document.getElementById('fradiotooltip');
-
-		radioframe.setAttribute('src', getInfoLink($infoLink));
-		tip.style.top = evt.clientY + 10 + 'px';
-		tip.style.display = 'block';
-		
-		// window.open(getInfoLink($infoLink), '_blank');
-	}
-
 	// function onHoverInfoLink($infoLink, evt) {
 	//     // console.dir(evt);
 	// }
 
 	// 2. A little bit of JS magic to properly reposition the modal once it has been resized:
 	// source: https://trueg.wordpress.com/2012/10/12/and-now-for-something-completely-different-resizable-bootstrap-modals/
-	// $('.modal').on('resize', function(event, ui) {
+	// $('.modal').on('resize', (event, ui) => {
 	//     ui.element.css('margin-leftuui.size.width'/2);
 	//     ui.element.css('margin-topuui.size.height'/2);
 	//     ui.element.css('top0%');
@@ -132,35 +129,62 @@ $(document).ready(() => {
 	};
 
 	var $stationLinks = $('.station-links a');
+
 	$stationLinks.parent().append('<small class="info-link">-info</small>');
 
 	var $infoLinks = $('.info-link');
+	var $playButton = $('.play-button');
+	var recentStation = null;
 
-	$stationLinks.bind('click', function(evt) {
+	function onInfoLink($infoLink, evt) {
+		var radioframe = document.getElementById('fradioframe');
+		var tip = document.getElementById('fradiotooltip');
+
+		radioframe.setAttribute('src', getInfoLink($infoLink));
+		tip.style.top = evt.clientY + 10 + 'px';
+		tip.style.display = 'block';
+	}
+
+	$stationLinks.bind('click', evt => {
 		evt.preventDefault();
 		activateStationLink($(evt.currentTarget));
 	});
 
-	$infoLinks.bind('click', function(evt) {
+	$infoLinks.bind('click', evt => {
 		evt.preventDefault();
 		onInfoLink($(evt.currentTarget), evt);
 	});
 
-	// $infoLinks.bind('mouseover', function(evt) {
+	$playButton.bind('click', evt => {
+		evt.preventDefault();
+
+		var p = $player.get(0);
+
+		if (p.src) {
+			recentStation = p.src;
+			p.src = '';
+			// $player.pause();
+			// $player.currentTime = 0;
+		} else {
+			p.src = recentStation;
+			p.play();
+		}
+
+	});
+
+	// $infoLinks.bind('mouseover', evt => {
 	//     evt.preventDefault();
 	//     onHoverInfoLink($(evt.currentTarget), evt);
 	// });
 
-	$('[data-role="theme-switcher"]').bind('click', function() {
+	$('[data-role="theme-switcher"]').bind('click', () => {
 		toggleTheme('dark');
 	});
 
 	initStation(station.name, station.url, station.alias);
 
-	initLocation();
+	initPlayer();
 
 });
 
-(function(){
-	console.log('hello two');
-})();
+(() => console.log('arrow'))();
