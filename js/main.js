@@ -1,28 +1,10 @@
 /* global $, console */
+
 'use strict';
 
 // state.station property defines the station to be used instead of the default channel's station
 
-$(document).ready(function() {
-
-	function toggleTheme(themeAlias) {
-		var switchable = themes[themeAlias] && themes[themeAlias].switchable;
-		//  var forceSwitch = switchable ? undefined : undefined;
-		if (!themeAlias || (currentTheme === themeAlias && !switchable)) {
-			return;
-		}
-		currentTheme = themeAlias;
-		$('body').toggleClass(themeAlias);
-		themeActions(themeAlias);
-	}
-
-	function themeActions(themeAlias) {
-		// console.log('tme actions for ' + themeAlias);
-		if (themes[themeAlias] && themes[themeAlias].childThemes && themes[themeAlias].childThemes[0]) {
-			toggleTheme(themes[themeAlias].childThemes[0]);
-			//console.log('toggleTheme ' + themes[themeAlias].childThemes[0]);
-		}
-	}
+$(document).ready(() => {
 
 	function initLocation() {
 		var hash = window.location.hash.toLowerCase().substring(1);
@@ -41,6 +23,25 @@ $(document).ready(function() {
 		$('.station-name').text(stationName);
 		$('.station-name-bg').text(stationName);
 		$player.attr('src', stationUrl).get(0).play();
+	}
+
+	function toggleTheme(themeAlias) {
+		var switchable = themes[themeAlias] && themes[themeAlias].switchable;
+		//  var forceSwitch = switchable ? undefined : undefined;
+		if (!themeAlias || (currentTheme === themeAlias && !switchable)) {
+			return;
+		}
+		currentTheme = themeAlias;
+		$('body').toggleClass(themeAlias);
+		themeActions(themeAlias);
+	}
+
+	function themeActions(themeAlias) {
+		// console.log('tme actions for ' + themeAlias);
+		if (themes[themeAlias] && themes[themeAlias].childThemes && themes[themeAlias].childThemes[0]) {
+			toggleTheme(themes[themeAlias].childThemes[0]);
+			//console.log('toggleTheme ' + themes[themeAlias].childThemes[0]);
+		}
 	}
 
 	function activateStationLink($link) {
@@ -159,3 +160,7 @@ $(document).ready(function() {
 	initLocation();
 
 });
+
+(function(){
+	console.log('hello two');
+})();
