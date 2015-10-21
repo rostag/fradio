@@ -7,14 +7,16 @@
 
 <body>
     
-    <script type="text/javascript" src="./jquery.js"></script>
+    <script type="text/javascript" src="./js/jquery.js"></script>
     <script type="text/javascript" src="./js/main.js"></script>
     <script type="text/javascript" src="./js/visualization.js"></script>
     <script type="text/javascript" src="./js/screensaver.js"></script>
     <link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="./css/sliders.css">
     <link rel="stylesheet" type="text/css" href="./css/fradio.css">
     
     <div class="fradio">
+
         <div id="fradiotooltip">
             <div id="fradiotip">
                 <div class="progress">
@@ -25,26 +27,36 @@
                 </iframe>
             </div>
         </div>
+
         <div class="container-fluid" data-role="wrapper">
+
             <div class="station-name-bg"></div>
+
             <div class="row top-row">
                 <div id="block-station" class="col-md-6 col-sm-6 col-xs-12">
                     <div class="station-label">Station:</div>
                     <h2 class="station-name pull-left"></h2>
                 </div>
+
                 <div class="fr-toolbar col-md-6 col-sm-6 col-xs-12">
-                    <button class="play-button">►</button>
+
+                    <button type="button" class="btn btn-primary play-button">►</button>
+
                     <input type="range" class="volume-slider">
+
                     <audio loop class="player pull-left" type="audio/mpeg"></audio>
+
                     <div id="theme-switch" class="btn-group btn-group-sm" role="group" aria-label="Theme" data-role="theme-switcher">
                         <button type="button" class="btn btn-default active" data-theme="lite">1</button>
                         <button type="button" class="btn btn-default" data-theme="dark">0</button>
                     </div>
+
                     <div id="font-size-input" class="btn-group btn-group-sm" role="group" aria-label="Theme" data-role="font-size-input">
                         <button type="button" class="btn btn-default" data-size="dec"><small>A</small></button>
                         <button type="button" class="btn btn-default active" data-size="inc">A</button>
                     </div>
                 </div>
+
             </div>
             <div class="row station-links center-block">
                 <div class="col-md-3 col-sm-6 col-xs-12 audio-group power">
