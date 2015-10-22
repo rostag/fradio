@@ -4,10 +4,47 @@
 
 // state.station property defines the station to be used instead of the default channel's station
 
-$(document).ready(() => {
+$(document).ready(function() {
 
 	var self = this;
+	var recentStation = null;
 	var $stationLink = null;
+	var $stationLinks = $('.station-links a');
+	var $infoLinks = $('.info-link');
+	var $playButton = $('.play-button');
+
+	var $player = $('.player');
+	var currentTheme = '';
+
+	var states = {
+		def: {
+			station: {
+				name: 'Select a station',
+				url: '',
+				alias: ''
+			}
+		},
+		infoLink: {
+			toggle: false
+		},
+		player: {
+			isPlaying: !$player.get(0).paused
+		} 
+	};
+
+	var station = states.def.station;
+
+	var themes = {
+		'station-def-con-radio': {
+			childThemes: ['dark']
+		},
+		'dark': {
+			switchable: true
+		}
+	};
+
+	// Decorate station links with addiotional info links
+	$stationLinks.parent().append('<small class="info-link">-info</small>');
 
 	function initPlayer() {
 		initDefaultStation();
@@ -101,40 +138,6 @@ $(document).ready(() => {
 	// // Now just enable resize on all modals or on whatever modal you want:
 	// $('.modal').resizable();
 
-	var $player = $('.player');
-	var currentTheme = '';
-
-	var states = {
-		def: {
-			station: {
-				name: 'Select a station',
-				url: '',
-				alias: ''
-			}
-		},
-		infoLink: {
-			toggle: false
-		}
-	};
-
-	var station = states.def.station;
-
-	var themes = {
-		'station-def-con-radio': {
-			childThemes: ['dark']
-		},
-		'dark': {
-			switchable: true
-		}
-	};
-
-	var $stationLinks = $('.station-links a');
-
-	$stationLinks.parent().append('<small class="info-link">-info</small>');
-
-	var $infoLinks = $('.info-link');
-	var $playButton = $('.play-button');
-	var recentStation = null;
 
 	function onInfoLink($infoLink, evt) {
 		var radioframe = document.getElementById('fradioframe');
@@ -160,15 +163,24 @@ $(document).ready(() => {
 
 		var p = $player.get(0);
 
-		if (p.src) {
+		console.log('recentStation = ' + recentStation);
+		// pause
+		if (states.player.isPlaying) {
+			console.log('pause: ' + p.src);
 			recentStation = p.src;
 			p.src = '';
 			// $player.pause();
 			// $player.currentTime = 0;
+		// play
 		} else {
+			console.log('play: ' + p.src);
 			p.src = recentStation;
 			p.play();
 		}
+
+		states.player.isPlaying = !states.player.isPlaying;
+
+		console.log('recentStation = ' + recentStation);
 
 	});
 

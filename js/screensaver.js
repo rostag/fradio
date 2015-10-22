@@ -1,6 +1,6 @@
     'use strict';
     // Self-running screensaver module, runs only if noScreensaverPlease != true:
-    fradioConfig = fradioConfig || {}
+    this.fradioConfig = this.fradioConfig || {};
     fradioConfig.noScreensaverPlease = true;
 
     (function initScreensaver() {
