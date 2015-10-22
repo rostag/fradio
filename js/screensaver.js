@@ -1,9 +1,10 @@
     'use strict';
     // Self-running screensaver module, runs only if noScreensaverPlease != true:
-    var noScreensaverPlease = false;
+    fradioConfig = fradioConfig || {}
+    fradioConfig.noScreensaverPlease = true;
 
     (function initScreensaver() {
-            if (noScreensaverPlease) {
+            if (fradioConfig.noScreensaverPlease) {
                 return;
             }
             var screenSaverTimeout = 30000; // 1 min of inactivity
@@ -30,7 +31,7 @@
                 sw.innerHTML = 'Turn screensaver off';
                 sw.setAttribute('style', 'display: block; cursor: pointer; position: absolute; bottom: 30px; margin-right:40%; margin-left:40%; padding: 10px; background: #999; opacity: 0.7; z-index: 1002; font-size: 0.9em;text-align:center;');
                 sw.addEventListener('click', function() {
-                    noScreensaverPlease = true;
+                    fradioConfig.noScreensaverPlease = true;
                     sw.style.opacity = '0';
                     stopAnimation();
                     offButton = null;
@@ -50,7 +51,7 @@
             }
 
             function animateMe() {
-                if (noScreensaverPlease) {
+                if (fradioConfig.noScreensaverPlease) {
                     return;
                 }
 
