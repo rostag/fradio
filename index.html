@@ -40,21 +40,21 @@
 
                 <div class="fr-toolbar col-md-6 col-sm-6 col-xs-12">
 
-                    <button type="button" class="btn btn-primary play-button">►</button>
-
-                    <input type="range" disabled="disabled" class="volume-slider">
 
                     <audio loop class="player pull-left" type="audio/mpeg"></audio>
+                    <input type="range" min="0" max="100" name="vol" class="volume-slider pull-right">
+                    <output for="vol" onforminput="value=vol.valueAsNumber;"></output>
 
-                    <div id="theme-switch" class="btn-group btn-group-sm" role="group" aria-label="Theme" data-role="theme-switcher">
+                    <button type="button" class="btn btn-primary play-button pull-right">►</button>
+                    
+                    <div id="theme-switch" class="btn-group btn-group-sm pull-right" role="group" aria-label="Theme" data-role="theme-switcher">
                         <button type="button" class="btn btn-default active" data-theme="lite">1</button>
                         <button type="button" class="btn btn-default" data-theme="dark">0</button>
                     </div>
-
-                    <div id="font-size-input" class="btn-group btn-group-sm" role="group" aria-label="Theme" data-role="font-size-input">
+                    <!-- <div id="font-size-input" class="btn-group btn-group-sm" role="group" aria-label="Theme" data-role="font-size-input">
                         <button type="button" class="btn btn-default" data-size="dec"><small>A</small></button>
                         <button type="button" class="btn btn-default active" data-size="inc">A</button>
-                    </div>
+                    </div> -->
                 </div>
 
             </div>
@@ -120,6 +120,7 @@
         </div>
 
     </div>
+
 </body>
 
 </html>

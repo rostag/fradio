@@ -12,6 +12,7 @@ $(document).ready(function() {
 	var $stationLinks = $('.station-links a');
 	var $infoLinks = $('.info-link');
 	var $playButton = $('.play-button');
+	var $inputRange = $('input[type="range"]');
 
 	var $player = $('.player');
 	var currentTheme = '';
@@ -29,7 +30,7 @@ $(document).ready(function() {
 		},
 		player: {
 			isPlaying: !$player.get(0).paused
-		} 
+		}
 	};
 
 	var station = states.def.station;
@@ -45,6 +46,66 @@ $(document).ready(function() {
 
 	// Decorate station links with addiotional info links
 	$stationLinks.parent().append('<small class="info-link">-info</small>');
+
+	initRangeOutput();
+
+	function initRangeOutput(argument) {
+		var el, newPoint, newPlace, offset, width;
+
+		var mouseX;
+
+		// Select all range inputs, watch for change
+		$inputRange.change(onRangeInput);
+
+		$inputRange.mousemove(onRangeInput);
+
+		$inputRange.mouseover(function(event) {
+			$inputRange.next('output').fadeIn('fast');
+		});
+
+		$inputRange.mouseout(function(event) {
+			$inputRange.next('output').fadeOut('slow');
+		});
+
+		$inputRange[0].addEventListener('input', onRangeInput);
+
+		$inputRange.trigger('mousemove');
+
+		function onRangeInput(event) {
+
+			el = $(event.target);
+
+			width = el.width();
+
+			var thumbWidth = 43;
+
+			mouseX = event.clientX || 0;
+
+			newPoint = (el.val() - el.attr('min')) / (el.attr('max') - el.attr('min'));
+
+			offset = el[0].offsetLeft || 0;
+
+			if (mouseX && offset) {
+
+				newPlace = mouseX - offset - width - thumbWidth / 2; // || Math.min(Math.max(width * newPoint, 0), width - thumbWidth) - width - thumbWidth + offset;
+
+				console.log(mouseX, offset, newPlace);
+				// console.log('newPoint =', newPoint, width);
+
+				el
+					.next('output')
+					.css({
+						left: newPlace
+					})
+					.text(el.val());
+			}
+
+			if ( el.val() ) {
+				setPlayerVolume( $player[0], el.val() / 100);
+			}
+
+		}
+	}
 
 	function initPlayer() {
 		initDefaultStation();
@@ -64,6 +125,10 @@ $(document).ready(function() {
 			// console.log('default station link: ', $defaultLink);
 			// activateStationLink($defaultLink);
 		}
+	}
+
+	function setPlayerVolume(player, volume) {
+		player.volume = volume;
 	}
 
 	function initStation(stationName, stationUrl, stationAlias) {
@@ -171,7 +236,7 @@ $(document).ready(function() {
 			p.src = '';
 			// $player.pause();
 			// $player.currentTime = 0;
-		// play
+			// play
 		} else {
 			console.log('play: ' + p.src);
 			p.src = recentStation;
