@@ -50,14 +50,14 @@ $(document).ready(function() {
 	initRangeOutput();
 
 	function initRangeOutput(argument) {
-		var el, newPoint, newPlace, offset, width;
+		var el, newPlace, offset, width;
 
 		var mouseX;
 
 		// Select all range inputs, watch for change
 		$inputRange.change(onRangeInput);
 
-		$inputRange.mousemove(onRangeInput);
+		$inputRange.mousemove(onRangeMove);
 
 		$inputRange.mouseover(function(event) {
 			$inputRange.next('output').fadeIn('fast');
@@ -71,8 +71,7 @@ $(document).ready(function() {
 
 		$inputRange.trigger('mousemove');
 
-		function onRangeInput(event) {
-
+		function onRangeMove(event) {
 			el = $(event.target);
 
 			width = el.width();
@@ -81,29 +80,25 @@ $(document).ready(function() {
 
 			mouseX = event.clientX || 0;
 
-			newPoint = (el.val() - el.attr('min')) / (el.attr('max') - el.attr('min'));
-
 			offset = el[0].offsetLeft || 0;
 
 			if (mouseX && offset) {
 
 				newPlace = mouseX - offset - width - thumbWidth / 2; // || Math.min(Math.max(width * newPoint, 0), width - thumbWidth) - width - thumbWidth + offset;
 
-				console.log(mouseX, offset, newPlace);
-				// console.log('newPoint =', newPoint, width);
-
 				el
 					.next('output')
 					.css({
 						left: newPlace
-					})
-					.text(el.val());
-			}
+					});
+			}			
+		}
 
+		function onRangeInput(event) {
 			if ( el.val() ) {
+				el.next('output').text(el.val());
 				setPlayerVolume( $player[0], el.val() / 100);
 			}
-
 		}
 	}
 
